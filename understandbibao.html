@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<button id="btn">按钮1</button>
+		<button id="btn">按钮2</button>
+		<button id="btn">按钮3</button>
+		<button id="btn">按钮4</button>
+		<button id="btn">按钮5</button>
+		<script type="text/javascript">
+			var btns=document.getElementsByTagName("button");
+
+//			for(var i=0;i<btns.length;i++){
+//				btns[i].sy=i;
+//				btns[i].onclick=function(){
+//					alert(this.sy);
+//				}
+//			}
+        
+
+
+//         for(var i=0;i<btns.length;i++){
+//         		(function(index){
+//         			 btns[index].onclick=function(){
+//         			 	 alert(index);
+//         			 }
+//         		})(i)
+//         }
+
+
+
+
+//         for(var i=0;i<btns.length;i++){
+//         	   btns[i].onclick=(function(i){
+//         	   	   return function(){
+//         	   	   	    alert(i);
+//         	   	   }
+//         	   })(i)
+//         }
+                        
+             
+
+			
+			//可以访问其它函数内部变量的函数
+//			var o;
+//			function afun(){
+//				var a=5;
+//				function b(){
+//					alert(a);
+//				}
+//				o=b;
+//			}
+//			afun();
+//			o();
+//			
+			
+			
+//	    //es6有块级作用域
+//      for(let i=0;i<5;i++){
+//      	btns[i].onclick=function(){  //同步  异步  //闭包
+//      		alert(i);
+//      	}
+//      }
+//      alert(i);
+      
+      
+//     var a=5;
+//     setTimeout(function(){
+//     	   a=10;
+//     },0);
+//     alert(a);
+
+
+    
+//	    for(var i=0;i<5;i++){
+//	    	setTimeout(function(){
+//	    		console.log(i);
+//	    	},1000);
+//	    }
+//	    console.log("---"+i);
+
+
+		</script>
+	</body>
+</html>

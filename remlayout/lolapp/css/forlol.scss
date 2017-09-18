@@ -1,0 +1,88 @@
+  $bl:25;  
+            @font-face {
+              font-family: 'iconfont';
+              src: url('../fonts/iconfont.eot');
+              src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+              url('../fonts/iconfont.woff') format('woff'),
+              url('../fonts/iconfont.ttf') format('truetype'),
+              url('../fonts/iconfont.svg#iconfont') format('svg');
+            }           
+            .iconfont{
+              font-family:"iconfont" !important;
+              font-style:normal;
+              -webkit-font-smoothing: antialiased;
+              -webkit-text-stroke-width: 0.2px;
+              -moz-osx-font-smoothing: grayscale;
+            }
+            body,ul,p,span,h3,span,time{margin:0;}
+            ul,span,time{padding:0;}
+            html{height: 100%;}
+            body{
+                height: 100%;
+                box-sizing: border-box;
+                padding-top:(80+107.79)/$bl+rem;
+                padding-bottom:55px;
+            }
+    
+            
+            header{
+                position: fixed;
+                top:0;
+                width: 100%;
+                height:80px;
+                background-color: #323131;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            header p{
+                height: 50px;
+                color: #ffcb60;
+                font-size: 40px;
+                line-height: 50px;
+                font-weight: bold;
+                background-image: -webkit-gradient(linear, 0 0, 0 100%,from(rgba(253,217,119,1)), to(rgba(154,110,5,1)));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 0 30px rgba(255,255,255,0.3),
+                             0 0 15px rgba(253,217,119,0.9);                
+            }
+            
+            div img{
+                width: 100%;
+                position: fixed;
+                top: 80px;
+            }
+            
+            section{
+                height: 100%;
+                width: 100%;
+                overflow-y: auto;
+            }            
+            
+            footer{
+                position: fixed;
+                bottom: 0;
+                background-color: #323131;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;                
+            }
+            footer p{
+                color:#9A6E05;
+                font-size: 120px;
+                line-height: 55px;
+//              text-shadow: 0 0 10px rgba(253,217,119,0.8); 
+                background: linear-gradient(-130deg,rgba(253,217,119,0.8) 10%,rgba(154,110,5,1) 70%);               
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+
+
+
+            

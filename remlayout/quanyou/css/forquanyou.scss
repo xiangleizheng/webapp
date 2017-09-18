@@ -1,0 +1,18 @@
+$bl:30;
+html{width: 100%;height: 100%;}
+body{height: 100%;margin: 0;background-color: rgba(240,240,240,1);}
+div.enter{
+    width: 100%;
+    height: 100%;
+    img.logo{
+        width: 327/$bl+rem;
+        margin-top: 336/$bl+rem;
+        margin-left: 212/$bl+rem;
+    }
+    h2{margin: 0;width: 100%;text-align: center;color:rgba(53,53,53,1)}
+    img.slogen{
+        width: 375/$bl+rem;
+        margin-top: 130/$bl+rem;
+        margin-left: 190/$bl+rem;    
+    }
+}
