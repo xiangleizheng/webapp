@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -7,7 +7,48 @@
 		<script>
 			document.documentElement.style.fontSize=innerWidth/15+"px";
 		</script>
+		<script src="js/forlol.js"></script>
 		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/angular.js"></script>
+		<script src="js/angular-ui-router.js"></script>
+		  <script>
+			 var app=angular.module("app",["ui.router"]);
+			 app.config(function($stateProvider,$urlRouterProvider){
+			 	 $urlRouterProvider.otherwise('/all')
+			 	  $stateProvider
+			 	  .state({
+			 	  	 name:'all',
+			 	  	 url:"/all",
+			 	  	 templateUrl:"./views/all.html"
+			 	  })
+			 	   .state({
+			 	  	 name:'yuan',
+			 	  	 url:"/yuan",
+			 	  	 templateUrl:"./views/yuan.html"
+			 	  })
+			 	   .state({
+			 	  	 name:'future',
+			 	  	 url:"/future",
+			 	  	 templateUrl:"./views/future.html"
+			 	  })
+			 	   .state({
+			 	  	 name:'omiga',
+			 	  	 url:"/omiga",
+			 	  	 templateUrl:"./views/omiga.html"
+			 	  })	
+			 	   .state({
+			 	  	 name:'star',
+			 	  	 url:"/star",
+			 	  	 templateUrl:"./views/star.html"
+			 	  })			 	  
+			 })
+//			app.directive("homepage",function(){
+//				return {
+//					restrict:"E",
+//					templateUrl:"./views/homepage.html"
+//				}
+//			})
+		</script>
 	</head>
 	<body>
 		<div class="content">
@@ -20,18 +61,15 @@
 			</header>
 			<nav>
 				<ul>
-					<li>源计划</li>
-					<li>暗杀星</li>
-					<li>星之守护者</li>
+					<li><a href="#!/yuan">源计划</a></li>
+					<li><a href="#!/future">未来战士</a></li>
+					<li><a href="#!/omiga">欧米伽小队</a></li>
+					<li><a href="#!/star">星光守护者</a></li>
 				</ul>
 			</nav>
-			<section>
-				<ul>
-					<li><img src="img/1.png" alt="" /><img src="img/2.png" alt="" /></li>
-					<li><img src="img/3.png" alt="" /><img src="img/4.png" alt="" /></li>
-					<li><img src="img/5.png" alt="" /><img src="img/6.png" alt="" /></li>
-				</ul>
-			</section>
+			
+			<ui-view></ui-view>
+
 		</div>
 	</body>
 </html>

@@ -21,9 +21,14 @@ ul {
   list-style: none; }
 
 .content {
+  box-sizing: border-box;
+  padding-top: 5.8rem;
   display: flex;
   flex-direction: column; }
   .content header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
     text-align: center;
     width: 100%;
     height: 2.6rem;
@@ -34,6 +39,8 @@ ul {
       margin: 0 8px;
       display: flex;
       justify-content: space-between; }
+      .content header ul li:hover {
+        color: #FFCB60; }
       .content header ul li {
         font-size: 1.4rem; }
         .content header ul li:nth-child(2) {
@@ -42,12 +49,16 @@ ul {
           background: linear-gradient(to bottom, #fdae50, #95570d);
           -webkit-background-clip: text; }
   .content nav {
+    position: fixed;
+    z-index: 10;
+    top: 2.6rem;
     width: 100%;
     height: 3.2rem;
     background-color: #333333; }
     .content nav ul {
       height: 100%;
       display: flex;
+      flex-wrap: wrap;
       align-items: center; }
       .content nav ul li:hover {
         border: 1px solid #FFCB60;
@@ -57,11 +68,16 @@ ul {
         text-align: center;
         margin: 0 10px;
         padding: 5px 0;
-        color: #FFCB60;
         flex: 1;
-        font-size: 0.6rem;
+        font-size: 0.48rem;
         border: 1px solid transparent;
+        color: #FFCB60;
         transition: all 0.2s; }
+        .content nav ul li a {
+          color: #FFCB60;
+          text-decoration: none; }
+  .content ui-view {
+    flex: 1; }
   .content section {
     overflow-y: auto;
     flex: 1; }
@@ -69,10 +85,21 @@ ul {
       width: 100%;
       overflow: hidden; }
       .content section ul li {
+        position: relative;
         width: 100%;
         height: 6.96rem; }
         .content section ul li img {
           width: 50%;
           height: 6.96rem; }
+        .content section ul li span {
+          display: inline-block;
+          text-indent: 10%;
+          position: absolute;
+          font-size: 0.6rem;
+          right: 0;
+          top: 50%;
+          width: 50%;
+          color: #313131;
+          text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
 
 /*# sourceMappingURL=index.css.map */

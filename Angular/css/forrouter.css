@@ -1,0 +1,33 @@
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0; }
+
+.box {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 60px;
+  display: flex; }
+  .box .con {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.1); }
+  .box .footer {
+    position: fixed;
+    background-color: #323131;
+    height: 60px;
+    bottom: 0;
+    width: 100%; }
+    .box .footer a {
+      text-decoration: none;
+      color: #feaa11;
+      display: block;
+      width: 33.33%;
+      line-height: 60px;
+      height: 60px;
+      float: left;
+      text-align: center; }
+
+/*# sourceMappingURL=forrouter.css.map */
