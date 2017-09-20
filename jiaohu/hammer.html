@@ -4,7 +4,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	    <style>
+	   <script src="js/hammer.js"></script>
+	   <style>
 	    html{height:100%;}
 	        body{
 	        	margin: 0;
@@ -12,7 +13,8 @@
 	        	overflow: hidden;
 	        }
 	    	.box{
-	    		width:100%;
+	    		margin: 0 auto;
+	    		width:60%;
 	    		height:400px;
 	    		background-color: salmon;
 	    	}
@@ -42,6 +44,21 @@
 		document.addEventListener("touchend",function(e){
 			ps[0].innerHTML="触摸点有："+e.touches.length;
 			ps[3].innerHTML="触摸结束时坐标为："+e.changedTouches[0].pageX;
+		})	
+		
+		var handb = new Hammer(box);
+		var sc = 1;
+		handb.get("pinch").set({enable:true});
+		handb.on("panleft",function(){
+			console.log("swipe left")
+		})
+		handb.on("pinchin",function(){
+			sc-=0.03;
+			box.style.transform="scale("+sc+")"
+		})
+		handb.on("pinchout",function(){
+			sc+=0.03;
+			box.style.transform="scale("+sc+")"
 		})		
 	</script>	
 	</body>
