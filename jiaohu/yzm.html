@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script>
+		  document.documentElement.style.fontSize=innerWidth/15+"px";
+		</script>
+		<title>验证码</title>
+		<style>
+			span{
+				display: block;
+				border: 1px solid slategray;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<span>切换</span>
+		<script>
+		
+		    var str ="";
+			for(var i= 65 ; i<=90 ;i++){
+				str += String.fromCharCode(i);
+			}
+			for(var i= 97 ; i<=122 ;i++){
+				str += String.fromCharCode(i);
+			}
+			for(var i= 0 ; i<=9 ;i++){
+				str +=i;
+			}			
+			
+			var btn = document.querySelectorAll("span")[0];
+			var p = document.createElement("p");
+			document.body.appendChild(p);				
+			var myp = document.getElementsByTagName("p")[0];
+
+			
+			btn.addEventListener("touchstart",function(){
+			    var yzm ="";
+				for(var n = 0 ;n<4;n++){
+				  yzm += str[Math.trunc(Math.random()*str.length)]
+				}
+
+				myp.innerHTML=yzm;
+				myp.style.color=changeC();
+			})
+			
+
+			
+
+			
+
+
+			function changeC(){
+				var s = "#";
+				for(var i = 0;i<6;i++){
+					s+=parseInt(Math.random()*17).toString(16)
+				}
+				return s;
+			}
+    
+
+
+		</script>
+	</body>
+</html>

@@ -7,69 +7,18 @@
 		<script>
 			document.documentElement.style.fontSize=innerWidth/15+"px";
 		</script>
-		<script src="js/forlol.js"></script>
 		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/animate.css" />
 		<script src="js/angular.js"></script>
 		<script src="js/angular-ui-router.js"></script>
-		  <script>
-			 var app=angular.module("app",["ui.router"]);
-			 app.config(function($stateProvider,$urlRouterProvider){
-			 	 $urlRouterProvider.otherwise('/all')
-			 	  $stateProvider
-			 	  .state({
-			 	  	 name:'all',
-			 	  	 url:"/all",
-			 	  	 templateUrl:"./views/all.html"
-			 	  })
-			 	   .state({
-			 	  	 name:'yuan',
-			 	  	 url:"/yuan",
-			 	  	 templateUrl:"./views/yuan.html"
-			 	  })
-			 	   .state({
-			 	  	 name:'future',
-			 	  	 url:"/future",
-			 	  	 templateUrl:"./views/future.html"
-			 	  })
-			 	   .state({
-			 	  	 name:'omiga',
-			 	  	 url:"/omiga",
-			 	  	 templateUrl:"./views/omiga.html"
-			 	  })	
-			 	   .state({
-			 	  	 name:'star',
-			 	  	 url:"/star",
-			 	  	 templateUrl:"./views/star.html"
-			 	  })			 	  
-			 })
-//			app.directive("homepage",function(){
-//				return {
-//					restrict:"E",
-//					templateUrl:"./views/homepage.html"
-//				}
-//			})
-		</script>
+		<script src="controller/foromiga.js"></script>
+		<script src="controller/forfuture.js"></script>
+		<script src="main.js"></script>
+		<script src="directive/homepage.js"></script>
+		<script src="js/forlol.js"></script>
 	</head>
 	<body>
-		<div class="content">
-			<header>
-				<ul>
-					<li class="iconfont">&#xe607;</li>
-					<li class="iconfont">&#xe798;</li>
-					<li class="iconfont">&#xe670;</li>
-				</ul>
-			</header>
-			<nav>
-				<ul>
-					<li><a href="#!/yuan">源计划</a></li>
-					<li><a href="#!/future">未来战士</a></li>
-					<li><a href="#!/omiga">欧米伽小队</a></li>
-					<li><a href="#!/star">星光守护者</a></li>
-				</ul>
-			</nav>
-			
-			<ui-view></ui-view>
-
-		</div>
+		<homepage></homepage>
+	
 	</body>
 </html>

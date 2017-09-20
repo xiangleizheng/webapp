@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			html,body{height: 100%;margin: 0;padding: 0;}
+			.box{height: 100%;overflow: hidden;position: relative;}
+		    ul{
+		    	position: absolute;
+		    	width: 400%;
+		    	height:100%;
+		    	list-style: none;
+		    	padding: 0;margin: 0;
+		    	}
+		    ul.list li{width: 25%;height: 100%;float: left;}
+		    ul.list li:first-child{background-color:#00B38A;}
+		    ul.list li:nth-child(2){background-color:salmon;}
+		    ul.list li:nth-child(3){background-color:lightsalmon;}
+		    ul.list li:last-child{background-color:coral;}
+		</style>
+		<script src="js/hammer.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list" id="list">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+	<script>
+	
+	    var n = 0;
+		var list = document.querySelector("#list");
+		var lis = document.querySelectorAll("li");
+		
+	//阻止浏览器的默认行为 
+	function stopDefault(e){ 
+			//阻止默认浏览器动作(W3C) 
+			if( e && e.preventDefault ){ 
+			        e.preventDefault(); }
+			//IE中阻止函数器默认动作的方式 
+			else{
+			    window.event.returnValue = false; 
+			    return false; 
+			}
+	}
+	
+	function getStyle(obj,attr){
+		return getComputedStyle(obj,null)[attr];
+	}
+	
+	var liw = parseInt(getStyle(lis[0],"width")); 
+    console.log(liw)
+		
+	list.addEventListener("touchstart",function(ev){
+		ev.preventDefault();
+		var x = ev.changedTouches[0].pageX;
+		var listl = list.offsetLeft;
+
+		list.addEventListener("touchmove",function(ev){
+             var s = ev.changedTouches[0].pageX-x;
+             list.style.left=listl+s+"px";
+		})	
+		list.addEventListener("touchend",function(ev){
+             var n = Math.round(list.offsetLeft/liw);
+             
+             if(n==-lis.length){n=1-lis.length};
+             if(n>0){n=0};
+		     
+             list.style.left=n*liw+"px";
+             
+		})		
+	})
+
+	</script>	
+	</body>
+</html>

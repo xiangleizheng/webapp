@@ -1,0 +1,33 @@
+			 var app=angular.module("app",["ui.router","omigamodule","futuremodule"]);
+			 app.config(function($stateProvider,$urlRouterProvider){
+			 	 $urlRouterProvider.otherwise('/all')
+			 	  $stateProvider
+			 	  .state({
+			 	  	 name:'all',
+			 	  	 url:"/all",
+			 	  	 templateUrl:"./views/all.html"
+			 	  })
+			 	   .state({
+			 	  	 name:'yuan',
+			 	  	 url:"/yuan",
+			 	  	 templateUrl:"./views/yuan.html"
+			 	  })
+			 	   .state({
+			 	  	 name:'future',
+			 	  	 url:"/future",
+			 	  	 templateUrl:"./views/future.html",
+			 	  	 controller:"forfuture"
+			 	  	 
+			 	  })
+			 	   .state({
+			 	  	 name:'omiga',
+			 	  	 url:"/omiga",
+			 	  	 templateUrl:"./views/omiga.html",
+			 	  	 controller:"foromiga"
+			 	  })	
+			 	   .state({
+			 	  	 name:'star',
+			 	  	 url:"/star",
+			 	  	 templateUrl:"./views/star.html"
+			 	  })			 	  
+			 })
