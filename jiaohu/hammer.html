@@ -14,7 +14,7 @@
 	    	.box{
 	    		margin: 0 auto;
 	    		width:50%;
-	    		height:300px;
+	    		height:200px;
 	    		background-color: salmon;
 	    	}
 	    </style>
@@ -58,7 +58,7 @@
 		})
 		handb.on("pinchout",function(){
 			sc+=0.03;
-			if(sc>2){sc=2};
+			if(sc>1.5){sc=1.5};
 			box.style.transform="scale("+sc+")"
 		})		
 	</script>	
