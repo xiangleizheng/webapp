@@ -42,16 +42,16 @@
 		var ps = document.querySelectorAll("p");
 		box.addEventListener("touchstart",function(e){
 			ps[0].innerHTML="触摸点有："+e.touches.length;
-			ps[1].innerHTML="盒子内的触摸点有："+e.targetTouches.length;
+			ps[1].innerHTML="盒内触摸点有："+e.targetTouches.length;
 		})
 		box.addEventListener("touchmove",function(e){
 			ps[0].innerHTML="触摸点有："+e.touches.length;
-			ps[2].innerHTML="移动的触摸点有："+e.targetTouches.length;
+			ps[2].innerHTML="盒内移动点有："+e.targetTouches.length;
 		})		
 		box.addEventListener("touchend",function(e){
 			ps[0].innerHTML="触摸点有："+e.touches.length;
-			ps[1].innerHTML="盒子内的触摸点有："+e.targetTouches.length;
-			ps[2].innerHTML="移动的触摸点有："+e.targetTouches.length;
+			ps[1].innerHTML="盒内的触摸点有："+e.targetTouches.length;
+			ps[2].innerHTML="盒内移动点有："+e.targetTouches.length;
 			ps[3].innerHTML="触摸结束时坐标为："+parseFloat(e.changedTouches[0].pageX).toFixed(2);
 		})	
 		
