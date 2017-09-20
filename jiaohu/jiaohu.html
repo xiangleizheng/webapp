@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <style>
+	    html{height:100%;}
+	        body{
+	        	margin: 0;
+	        	height: 100%;
+	        	overflow: hidden;
+	        }
+	    	.box{
+	    		width:100%;
+	    		height:400px;
+	    		background-color: salmon;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+		</div>
+		
+	<script>
+		var box =document.querySelector("#box");
+		var ps = document.querySelectorAll("p");
+		box.addEventListener("touchstart",function(e){
+			ps[0].innerHTML="触摸点有："+e.touches.length;
+		})
+		box.addEventListener("touchstart",function(e){
+			ps[1].innerHTML="盒子内的触摸点有："+e.targetTouches.length;
+		})
+		box.addEventListener("touchmove",function(e){
+			ps[2].innerHTML="移动时盒内的触摸点有："+e.targetTouches.length;
+		})		
+		box.addEventListener("touchend",function(e){
+			ps[3].innerHTML="触摸结束时坐标为："+e.changedTouches[0].pageX;
+		})		
+	</script>	
+	</body>
+</html>
