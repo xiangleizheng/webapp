@@ -14,14 +14,18 @@
 	        	margin: 0;
 	        	height: 100%;
 	        	width: 100%;
+	        	position: relative;
 	        }
 	    	.box{
-	    		margin: 0 auto;
+	    		position: absolute;
+	    		top:50%;
+	    		left:50%;
+	    		transform: translate(-50%,-50%);
 	    		width:100px;
 	    		height:150px;
 	    		background-color: salmon;
 	    	}
-	    	.box p{font-size:0.4rem;}
+	    	.box p{font-size:0.4rem;margin: 0;}
 	    </style>
 	</head>
 	<body>

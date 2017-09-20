@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			html,body{height: 100%;margin: 0;padding: 0;}
+			.box{height: 100%;overflow: hidden;}
+		    ul{
+		    	width: 400%;
+		    	height:100%;
+		    	list-style: none;
+		    	padding: 0;margin: 0;
+		    	transition: all 0.5s ease-in-out;}
+		    ul.list li{width: 25%;height: 100%;float: left;}
+		    ul.list li:first-child{background-color:#00B38A;}
+		    ul.list li:nth-child(2){background-color:salmon;}
+		    ul.list li:nth-child(3){background-color:lightsalmon;}
+		    ul.list li:last-child{background-color:coral;}
+		</style>
+		<script src="js/hammer.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list" id="list">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+	<script>
+	//阻止浏览器的默认行为 
+	function stopDefault(e){ 
+			//阻止默认浏览器动作(W3C) 
+			if( e && e.preventDefault ){ 
+			        e.preventDefault(); }
+			//IE中阻止函数器默认动作的方式 
+			else{
+			    window.event.returnValue = false; 
+			    return false; 
+			}
+	}
+		var list = document.querySelector("#list");
+		var lis = document.querySelectorAll("li");
+		var handb = new Hammer(list);
+		var flag = true; var n=0;
+		handb.on("panleft",function(ev){	
+		  if(flag){	
+			n++;
+			if(n>=lis.length){n=lis.length-1}
+			console.log(n)
+			flag=false;
+			list.style.transform="translate3d(-"+25*n+"%,0,0)";
+		  }	
+		})
+		handb.on("panright",function(ev){	
+		  if(flag){	
+			n--;
+			if(n<=0){n=0}
+			console.log(n)
+			flag=false;
+			list.style.transform="translate3d(-"+25*n+"%,0,0)";
+		  }	
+		})		
+		
+		list.addEventListener("touchend",function(e){
+           flag = true;
+		})
+	</script>	
+	</body>
+</html>
