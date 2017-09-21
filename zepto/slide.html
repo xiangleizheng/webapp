@@ -38,9 +38,14 @@
 		
 		<script>
 			$(function(){
-				var n =0;
-				$("#box").on("swipeLeft",function(e){
+				document.addEventListener("touchstart",function(e){
 					e.preventDefault();
+				})
+				$("#box").on("touchstart",function(e){
+					e.preventDefault();
+				})
+				var n =0;
+				$("#box").on("swipeLeft",function(){
 					n++;
 					if(n>=$("p").length){n=$("p").length-1};
 					$(this).css("transform","translateX(-"+n*100+"%)")
