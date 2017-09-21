@@ -39,7 +39,8 @@
 		<script>
 			$(function(){
 				var n =0;
-				$("#box").on("swipeLeft",function(){
+				$("#box").on("swipeLeft",function(e){
+					e.preventDefault();
 					n++;
 					if(n>=$("p").length){n=$("p").length-1};
 					$(this).css("transform","translateX(-"+n*100+"%)")
