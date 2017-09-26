@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="js/vuex.js"></script>
+	</head>
+	<body>
+		
+		<div id="box">
+			{{num}}  <button @click="handle">按钮</button>
+		</div>
+		
+	<script>
+	    const store = new Vuex.Store({
+	    	state:{
+	    		count:0,                //存放公共变量，各个组件可以通过        此例子中就可以通过store.state.count访问
+	    	},
+	    	mutations:{                 //存放各个逐渐都需要的公共方法
+	    		add(state,n){
+	    			state.count+=n
+	    		}
+	    		
+	    	}
+	    })
+	
+		var vvv = new Vue({
+			el:"#box",
+			computed:{
+				num(){
+					return store.state.count;
+				}
+			},
+			methods:{
+				handle(){ 
+					store.commit("add",5)          //通过commit才能调用 公共区域中的方法
+				}
+			}
+			
+		})
+	</script>	
+	</body>
+</html>

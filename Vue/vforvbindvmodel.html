@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+		<style>
+		    *{-webkit-user-select: none;}
+		    #box{width: 80%;height: 300px;margin: 0 auto;}
+		    .page{list-style: none;width: 80%;height: 30px;margin: 0 auto;}
+		    .page li{
+		    	float: left;
+		    	width: 60px;
+		    	height: 30px;
+		    	line-height:30px ;
+		    	
+		    }
+		    .page li span{display: block;width: 100%;height: 100%;color:#000;text-align: center;cursor: pointer;transition: all .3s;}
+			.cur{background-color: aquamarine;border-radius: 15px;font-size: 20px;}
+		    .changbox{background-color: greenyellow;}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<ul class="page">
+				<li v-for="n in 10"> 
+					<span :class="{cur:curnum===n}" @click="go(n)">{{n}}</span>
+				</li>
+			</ul>
+			
+			<hr />
+			<!--
+			    v-model用在复选框上时,
+				有value是获取value的值jq，而不是后面的jQuery,
+				复选框中，当没有value属性时，v-model获取的是布尔值(随着点击切换)
+			-->
+			<input type="checkbox" v-model="list" value="jq"/>jQuery  
+			<input type="checkbox" v-model="list" value="angular"/>Angular
+			<input type="checkbox" v-model="list" value="vue"/>Vue
+			<input type="checkbox" v-model="list" value="echarts"/>Echarts
+			<input type="checkbox" v-model="list" value="react"/>React
+			
+			<div v-if="typeof list=='object'">
+				<ul>
+					<li v-for="item in list">{{item}}</li>
+				</ul>
+			</div>
+			
+			<input type="text" v-model="w"/>宽
+			<input type="text" v-model="h"/>高
+			
+			<div class="changbox" :style="{width:w+'px',height:h+'px'}"></div>
+		</div>
+	
+	
+	<script>
+		new Vue({
+			el:"#box",
+			data:{
+				list:[],
+				curnum:1,//初始页面值
+				w:100,
+				h:100,
+			},
+			methods:{
+				go(pagenum){
+					this.curnum=pagenum;//将点击的页面值 传给 curnum 将curnum等于的n值的页面加上cur样式
+				}
+			},
+		})
+	</script>	
+	
+	</body>
+</html>

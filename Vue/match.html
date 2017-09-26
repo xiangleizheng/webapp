@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="js/vue.js"></script>	
+	<style>
+		.cur{
+			background-color: aqua;
+			width: 100px;
+		}
+		li{cursor: pointer;}
+	</style>
+	</head>
+	<body>
+		<div class="box">
+			<input type="text" v-model="keyword" @keyup="inp" />
+			<ul v-show="flag" @mouseleave="mout">				
+				<li v-for="item in mayneed" @click="handle(item)" @mouseenter="mover(item)"  :class="{'cur':item.mz==curname}">{{item.mz}}</li>
+			</ul>
+		</div>
+		
+	<script>
+	
+		new Vue({
+			el:".box",
+			data:{
+				list:["alise","hi-bob","cc-perlarie","h-tip"],
+				info:[
+				      {"mz":"Alice","rq":new Date()},
+				      {"mz":"Jared","rq":new Date()},
+				      {"mz":"Henry","rq":new Date()},
+				      {"mz":"Benny","rq":new Date()},
+				      {"mz":"Heserly","rq":new Date()},
+				      {"mz":"Simon","rq":new Date()},
+				      {"mz":"Aluccture","rq":new Date()},
+				      {"mz":"Flaord","rq":new Date()},
+				      {"mz":"Gracee","rq":new Date()},
+				      {"mz":"Klouf","rq":new Date()},
+				      
+				],
+				keyword:"",
+				flag:false,
+				curname:"",
+			},
+			computed:{   //计算属性
+				mayneed(){
+					if(this.keyword==""){return [];}
+					return this.info.filter(function(item){
+						return item.mz.indexOf(this.keyword)!=-1||item.mz.indexOf(this.keyword.charAt(0).toUpperCase())!=-1;
+					}.bind(this))
+				}
+			},
+			methods:{
+				inp(){
+					this.flag=true
+				},
+				handle(item){
+					this.keyword=item.mz;
+					this.flag=false;
+				},
+				mover(item){
+					this.curname=item.mz;
+				},
+				mout(){
+					this.curname="";
+				}
+			}
+		})
+	</script>	
+	</body>
+</html>

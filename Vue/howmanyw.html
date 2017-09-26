@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="js/vue.min.js"></script>
+	<style>
+
+		#app{
+			width: 50%;
+			margin: 0 auto;
+		}
+
+	</style>
+	</head>
+	<body>
+		<div id="app">
+            <textarea name="" rows="5" cols="50" v-model="str" :disabled='isDisabled' @onkeyup="judg"></textarea>
+		    <p>{{n}}/100</p>
+		</div>
+	<script>
+		var vm = new Vue({
+			el:"#app",  //根据id来接管元素
+			data:{      //放置变量
+			   n:0,
+               str:"",
+               isDisabled:false,
+			},
+			methods:{
+				judg(){
+					if(this.n>=100){
+						this.n=100;
+						this.isDisabled=true;
+					}
+				},
+
+			},
+			updated(){
+				this.n=this.str.length
+			}
+
+		})
+		
+	</script>	
+	</body>
+</html>

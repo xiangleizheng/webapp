@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+	<script src="js/swiper.min.js"></script>
+	<style>
+        body{margin: 0;}
+		.yuan-container{
+			width: 80%;
+			height:500px;
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.swiper-slide{
+			width: 60%;
+			background-color: salmon;
+			display: flex;
+
+		}
+		.swiper-slide p{margin: auto;font-size: 30px;display: block;}
+
+		.yuan-pagination{display: flex;justify-content: center;position: absolute;bottom: 0;z-index: 5;}
+		.swiper-pagination-bullet{transition: all 0.3s ease;text-align: center;color:transparent;background-color:rgb(193,25,78);}
+		.swiper-pagination-bullet-active{background-color:white;width: 20px;height: 20px;color: #FA8072;transform:translateY(-20px);}
+	    .swiper-button-next, .swiper-button-prev{height: 100%;width:90px;top:50%;margin-top: 0;transform: translateY(-50%);}
+	    .swiper-button-next{right: 0;}
+	    .swiper-button-prev{left: 0;}
+	</style>
+	</head>
+	<body>
+		<div class="yuan-container">
+		 
+			  <div class="swiper-wrapper">
+			    <div class="swiper-slide"><p>slider1</p></div>
+			    <div class="swiper-slide"><p>slider2</p></div>
+			    <div class="swiper-slide"><p>slider3</p></div>
+			  </div>
+			  <!--分页器-->
+		  	  <div class="yuan-pagination"></div>
+		  	  <!--左右-->
+		  	  <div class="swiper-button-prev swiper-button-white"></div>
+              <div class="swiper-button-next swiper-button-white"></div>
+        </div>      
+		<script> 
+		var mySwiper = new Swiper('.yuan-container', {
+			keyboardControl : true,//键控
+			prevButton:'.swiper-button-prev',
+            nextButton:'.swiper-button-next',//左右按钮
+			pagination : '.yuan-pagination',//分页器
+			paginationType : 'bullets',//分页器类型   bullets圆点（默认）fraction分式   progress进度条  custom自定义
+			paginationClickable :true,//设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+//			paginationHide :true,//默认分页器会一直显示。这个选项设置为true时点击Swiper会隐藏/显示分页器。
+            paginationElement : 'span',//设定分页器指示器（小点）的HTML标签。
+            paginationBulletRender: function (swiper, index, className) {
+			      return '<span class="' + className + '">' + (index + 1) + '</span>';
+			},
+            uniqueNavElements :true,//默认为true时，仅本swiper的container内的分页器有效，设置为false后，container以外的分页器也生效了。
+			autoplay: 3000,//可选选项，自动滑动
+			loop:true,
+//			autoplayDisableOnInteraction : false,//操作后自动切换不会停止;
+//			grabCursor : true,//鼠标操作是变成抓手
+//			setWrapperSize :true,//开启这个设定会在Wrapper上添加等于slides相加的宽高
+//			roundLengths : true, //将slide的宽和高取整(四舍五入)以防止某些分辨率的屏幕上文字或边界(border)模糊。
+
+//          breakpoints: {//根据屏幕宽度设置某参数为不同的值，类似于响应式布局的media screen
+//
+//			    //当宽度小于等于1000
+//			    1000: {
+//			      slidesPerView: 1,
+//			      spaceBetween: 0
+//			    }
+//		    },
+		    
+		   // autoHeight: true, //wrapper和container会随着当前slide的高度而发生变化
+		    
+		    effect : 'slide',//slide的切换效果，默认为"slide"（位移切换），可设置为"fade"（淡入）"cube"（方块）"coverflow"（3d流）"flip"（3d翻转）
+
+//			fade: {  //淡入时前一张透明度始终为1
+//			  crossFade: false,
+//			}
+
+//			cube: {
+//			  slideShadows: true,
+//			  shadow: true,
+//			  shadowOffset: 100,
+//			  shadowScale: 0.6
+//			}
+
+//			coverflow: {
+//			            rotate: 30,
+//			            stretch: 10,
+//			            depth: 60,
+//			            modifier: 2,
+//			            slideShadows : true
+//			}
+
+//			flip: {
+//			            slideShadows : true,
+//			            limitRotation : true,
+//			}
+			
+//			preventClicks : true,//默认true,当swiper在触摸时阻止默认事件（preventDefault），用于防止触摸时触发链接跳转
+//			preventClicksPropagation : true ,//阻止click冒泡。拖动Swiper时阻止click事件。
+//			slideToClickedSlide:true,//设置为true则点击slide会过渡到这个slide。
+		})
+		
+		
+		</script>
+		
+	</body>
+</html>

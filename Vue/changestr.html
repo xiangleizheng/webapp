@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="js/vue.min.js"></script>	
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="a" />
+			<input type="text" v-model="b"/>
+			<button v-on:click="changestr">交换</button>
+			<button v-on:click="cal">求和,差，积，商</button>
+			
+			<ul>
+				<li v-for="r in results">{{r}}</li>
+			</ul>
+		</div>
+	<script>
+		var vm = new Vue({
+			el:"#app",  //根据id来接管元素
+			data:{      //放置变量
+				a:250,
+				b:5,
+                results:[]
+			},
+			methods:{   //放置方法
+				changestr(){
+					[this.a,this.b]=[this.b,this.a];
+				},
+				cal(){
+                    this.results=[0,0,0,0];
+                    this.results[0]=parseFloat(this.a)+parseFloat(this.b);
+                    this.results[1]=this.a-this.b; 
+                    this.results[2]=this.a*this.b; 
+                    this.results[3]=parseFloat(this.a/this.b).toFixed(2); 
+				}
+		
+			}
+		})
+		
+//		vm.greed="sbbbbbb"
+	</script>	
+	</body>
+</html>

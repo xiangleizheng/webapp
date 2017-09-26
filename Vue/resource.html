@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="js/vuex.js"></script>
+		<script src="js/vue-resource.js"></script>
+	</head>
+	<body>
+		
+		<div id="box" @mouseleave="hidelist">
+			<my-input></my-input>
+			<my-drop></my-drop>
+		</div>
+		
+	<script>
+	    const store = new Vuex.Store({
+	    	state:{
+	    		tittle:"",
+	    		list:[],
+	    		visiable:false,
+	    	},
+	    	mutations:{                 
+                 changetittle:function(state,newvalue){
+                 	state.tittle=newvalue;
+                 },
+                 showhide:function(state,torf){
+                 	state.visiable=torf;
+                 },
+                 getData:function(state,data){
+                 	state.list=data;
+                 },
+	    		
+	    	},
+	    	actions:{
+	    		getDataBaidu:function(context){
+	    			Vue.http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=ff",{
+	    				jsonp:"cb"
+	    			}).then(function(res){
+	    				context.commit("getData",res.data.s)
+	    			},function(){});
+	    		}
+	    	}
+	    })
+	    var myInput ={
+	    	template:`<div><input type="text" v-model="text" @focus="show"/></div>`,
+	    	computed:{
+	    		text(){
+	    			return store.state.tittle;
+	    		}
+	    	},
+	    	methods:{
+	    		show(){
+	    			store.commit("showhide",true)
+	    		},
+	    	}
+	    }
+	    var myDrop ={
+	    	template:`<ul v-show="vis"><li v-for="item in list" @click="ok(item)">{{item}}</li></ul>`,
+	    	computed:{
+	    		list(){
+	    			return store.state.list;
+	    		},
+	    		vis(){
+	    			return store.state.visiable;
+	    		}
+	    	},
+	    	methods:{
+	    		ok(item){
+	    			store.commit("changetittle",item);
+	    			store.commit('showhide',false);
+	    		}
+	    	}
+	    }
+		var vvv = new Vue({
+			components:{
+				myInput,myDrop
+			},
+			el:"#box",
+			computed:{
+				text(){
+					return store.state.tittle;
+				}
+			},
+			methods:{
+               hidelist(){
+               	store.commit("showhide",false)
+               }
+			},
+			created(){
+				store.dispatch("getDataBaidu")
+				
+			}
+			
+		})
+	</script>	
+	</body>
+</html>

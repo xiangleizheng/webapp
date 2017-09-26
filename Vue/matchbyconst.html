@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<script src="js/vuex.js"></script>
+	</head>
+	<body>
+		
+		<div id="box" @mouseleave="hidelist">
+			<my-input></my-input>
+			<my-drop></my-drop>
+		</div>
+		
+	<script>
+	    const store = new Vuex.Store({
+	    	state:{
+	    		tittle:"",
+	    		list:["Alice","Bruce","Clair","Daved","Evian"],
+	    		visiable:false,
+	    	},
+	    	mutations:{                 
+                 changetittle:function(state,newvalue){
+                 	state.tittle=newvalue;
+                 },
+                 showhide:function(state,torf){
+                 	state.visiable=torf;
+                 }
+	    		
+	    	}
+	    })
+	    var myInput ={
+	    	template:`<input type="text" v-model="text" @focus="show"/>`,
+	    	computed:{
+	    		text(){
+	    			return store.state.tittle;
+	    		}
+	    	},
+	    	methods:{
+	    		show(){
+	    			store.commit("showhide",true)
+	    		}
+	    	}
+	    }
+	    var myDrop ={
+	    	template:`<ul v-show="vis"><li v-for="item in list" @click="ok(item)">{{item}}</li></ul>`,
+	    	computed:{
+	    		list(){
+	    			return store.state.list;
+	    		},
+	    		vis(){
+	    			return store.state.visiable;
+	    		}
+	    	},
+	    	methods:{
+	    		ok(item){
+	    			store.commit("changetittle",item);
+	    			store.commit('showhide',false);
+	    		}
+	    	}
+	    }
+		var vvv = new Vue({
+			components:{
+				myInput,myDrop
+			},
+			el:"#box",
+			computed:{
+				num(){
+					return store.state.count;
+				}
+			},
+			methods:{
+               hidelist(){
+               	store.commit("showhide",false)
+               }
+			},
+			
+		})
+	</script>	
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />	
+		
+	</head>
+	<body>
+		<div class="box">
+		   <my-progress value="30" k="1" @complete="done"></my-progress>
+		   <my-progress value="10" k="2" @complete="done"></my-progress>
+		   <my-progress value="50" k="3" @complete="done"></my-progress>
+		   <my-progress value="80" k="4" @complete="done"></my-progress>
+		   
+		   <p v-if="n!=0">第{{n}}个进度条完成进度</p>
+		</div>
+		<script>
+			var myProgress={
+				props:["value","k"],
+				data(){
+					return {
+						v:this.value
+					}
+				},
+				created(){
+					this.run();
+				},
+				methods:{
+					run(){
+						var t=setInterval(function(){
+							this.v++;
+							if(this.v==100){
+								clearInterval(t);
+								this.$emit("complete",this.k)//将满足条件的组件的k值,用自定义的complete事件传递给父组件 
+								//触发当前实例上的事件，附加参数都会传给监听器回调
+							}  
+							
+						}.bind(this),100);  //es5新增特性，绑定的是vue的实例
+						
+					}
+				},
+				template:`<div class="progress">
+  									<div class="progress-bar" :style="{width: v+'%'}">
+   										 <span>{{v}}% Complete</span>
+  									</div>
+						  </div>`
+						
+			}
+			new Vue({
+				components:{
+					 myProgress
+				},
+				data:{
+					n:0
+				},
+				el:".box",
+				methods:{
+					done(s){   //用done方法监听complete事件，并接收传来的k值，赋值给n
+						this.n=s;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

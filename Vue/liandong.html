@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <script src="js/vue.min.js"></script>	
+	</head>
+	<body>
+		<div class="box">
+			<select v-model="zy">
+				<option v-for="(items,key) in info">{{key}}</option>
+			</select>
+			
+			<select>
+				<option v-for="(items,key) in lesson">{{items}}</option>
+			</select>
+			
+		</div>
+		
+		<script>
+			new Vue({
+			    el:".box",
+			    data:{
+			    	
+			    	info:{
+				    	"webqd":{
+				    		'one':'javascript',
+				    		'two':'jQuery',
+				    		'three':'H5/C3',
+				    		'four':'Angular',
+				    		'five':'Vue',
+				    	},
+				    	"UI":{
+				    		'one':'PS',
+				    		'two':'AI',
+				    		'three':'AE',
+				    		'four':'xmind',
+				    	},
+			    	},
+			    	zy:'',
+			    	lesson:[],
+			    	
+			    },
+			    
+			    created(){
+			    	this.zy="webqd" //设置默认专业
+			    },
+			    watch:{
+			    	zy:function(n){
+			    		this.lesson=this.info[n];
+			    	}
+			    }
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="js/vue.js"></script>	
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li v-for="i in list">{{i|uppercase}}</li>
+				<hr />
+				<li v-for="i in list">{{i|camel}}</li>
+				<hr />
+				
+				
+				<input type="text" v-model="keyword"/>
+				<li v-for="item in mayneed" >{{item.mz}}&nbsp;&nbsp;{{item.rq|dataFormat}}</li>
+			</ul>
+		</div>
+		
+	<script>
+	//自定义一个过滤器，将值转为大写
+	   Vue.filter("uppercase",function(value){
+	   	 return value.toUpperCase();
+	   })
+	//自定义一个过滤器，-转驼峰	()在正则里面叫分组   
+//	   Vue.filter("camel",function(value){
+//		   	return value.replace(/-(\w)/g,function(a,b){
+//		   		return b.toUpperCase();
+//		   	})
+//	   })	
+	   
+	   Vue.filter("camel",function(value){
+		   	return value.replace(/-(\w)/g,function(){//replace会向后面的函数中传递四个参数   打印arguments 可查看具体值
+		   		return arguments[1].toUpperCase();
+		   	})
+	   })
+	
+		new Vue({
+			el:".box",
+			data:{
+				list:["alise","hi-bob","cc-perlarie","h-tip"],
+				info:[
+				      {"mz":"Alice","rq":new Date()},
+				      {"mz":"Jared","rq":new Date()},
+				      {"mz":"Henry","rq":new Date()},
+				      {"mz":"Benny","rq":new Date()},
+				      {"mz":"Heserly","rq":new Date()},
+				      {"mz":"Simon","rq":new Date()},
+				      {"mz":"Aluccture","rq":new Date()},
+				      {"mz":"Flaord","rq":new Date()},
+				      {"mz":"Gracee","rq":new Date()},
+				      {"mz":"Klouf","rq":new Date()},
+				      
+				],
+				keyword:"",
+			},
+			computed:{   //计算属性
+				mayneed(){
+					return this.info.filter(function(item){
+						return item.mz.indexOf(this.keyword)!=-1||item.mz.indexOf(this.keyword.charAt(0).toUpperCase())!=-1;
+					}.bind(this))
+				}
+			},
+			filters:{//实例内部定义的局部过滤器
+				dataFormat:function(value){
+					return value.getFullYear()+" - "+value.getMonth()+" - "+value.getDate() ;
+				}
+			}
+		})
+	</script>	
+	</body>
+</html>

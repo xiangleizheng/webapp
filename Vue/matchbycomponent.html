@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="js/vue.js"></script>	
+	<style>
+		.cur{
+			background-color: aqua;
+			width: 100px;
+		}
+		li{cursor: pointer;}
+	</style>
+	</head>
+	<body>
+		<div class="box">
+			<my-input @cinp="pinp" @changeinpvalue="pchangeinpvalue" :pkeyword="keyword" :state="suc"></my-input>
+			
+			
+			<my-lis @selected="phandle" :pflag="flag" :plist="mayneed" ></my-lis>
+
+		</div>
+		
+	<script>
+	    var myInput={//输入框的值绑定为inpvalue 每次键盘弹起 执行inp方法  该方法就是将当前的inpvalue传递给父组件  当做父组件的keyword使用     （子组件用cinp方法传递，父组件用pinp方法来监听cinp并接收数据
+	    	template:`<div><input type="text" v-model="inpvalue" @keyup="inp" /></div>`,    
+	    	props:["pkeyword","state"],   //接收父组件传递过来的pkeyword和state
+	    	data(){
+	    		return{
+	    			inpvalue:this.pkeyword   
+	    		}
+	    	},
+	    	watch:{
+	    		state:function(n){
+	    			if(n){
+	    				this.inpvalue=this.pkeyword;
+	    				this.$emit("changeinpvalue",false) //点击后，将false传给父组件,用以更新state值
+	    			}
+	    		}
+	    	},
+	    	methods:{
+	    		inp(){
+	    			this.$emit("cinp",this.inpvalue)//将my-input组件中的当前value值,传递给父组件
+	    		}
+	    	}
+	    }
+	    
+	    var myLis={
+	    	template:`<div>
+	    	            <ul v-show="cflag" @mouseleave="mout">
+				            <li v-for="item in clist" @click="chandle(item)" @mouseenter="mover(item)"  :class="{'cur':item.mz==curname}">{{item.mz}}</li>
+			            </ul>
+	    	         </div>`,
+			props:["pflag","plist"],
+			data(){
+				return{
+					curname:'',
+					cflag:this.pflag,
+					clist:this.plist,
+				}
+			},
+			watch:{
+				pflag:function(n){
+					this.cflag=this.pflag;
+				},
+				plist:function(n){
+					this.clist=this.plist;
+				}				
+			},
+			methods:{
+				mover(item){
+					this.curname=item.mz;
+				},
+				mout(){
+					this.curname="";
+				},
+				chandle(item){
+					this.$emit("selected",item);
+				}
+			}
+	    }
+	    
+	    
+		new Vue({
+			components:{
+				myInput,
+				myLis,
+			},
+			el:".box",
+			data:{
+				info:[
+				      {"mz":"Alice","rq":new Date()},
+				      {"mz":"Jared","rq":new Date()},
+				      {"mz":"Henry","rq":new Date()},
+				      {"mz":"Benny","rq":new Date()},
+				      {"mz":"Heserly","rq":new Date()},
+				      {"mz":"Simon","rq":new Date()},
+				      {"mz":"Aluccture","rq":new Date()},
+				      {"mz":"Flaord","rq":new Date()},
+				      {"mz":"Gracee","rq":new Date()},
+				      {"mz":"Klouf","rq":new Date()},
+				],
+				keyword:"",
+				flag:false,
+				suc:false,
+			},
+			computed:{   
+				mayneed(){
+					if(this.keyword==""){return [];}
+					return this.info.filter(function(item){
+						return item.mz.indexOf(this.keyword)!=-1||item.mz.indexOf(this.keyword.toLowerCase())!=-1;
+					}.bind(this))   //根据keyword的值从info中筛选出mayneed数组
+				}
+			},
+			methods:{
+				pchangeinpvalue(n){  //接收my-input中被修改后的state的值,并赋值给state
+					this.suc=n;
+				},
+				pinp(n){
+					this.flag=true; //接收my-input中的传递过来的input框的值,赋值给keyword
+					this.keyword=n
+				},
+				phandle(item){
+					this.keyword=item.mz;
+					this.flag=false;
+					this.suc=true;
+				},
+
+			}
+		})
+	</script>	
+	</body>
+</html>

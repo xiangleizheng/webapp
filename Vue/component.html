@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+			<div class="box1">
+				<yellow-div></yellow-div>
+				<yellow-div></yellow-div>
+				<yellow-div></yellow-div>
+				<black-div></black-div>
+				<black-div></black-div>
+			</div>
+			
+			<br />
+			<hr />
+			<br />
+			
+			<div class="box2">
+				<yellow-div></yellow-div>
+				<yellow-div></yellow-div>
+				<!--<black-div></black-div>//未在该实例中引入此组件，会弹出警告-->
+			</div>
+		
+		<script>
+		
+//		全局注册            可用在任何实例中
+			Vue.component("yellowDiv",{
+				template:'<div>a Yellow div</div>'
+			})
+//		局部注册          如实例需要使用该组件需要用components引入
+			var blackDiv={
+				template:"<div>a Black div</div>"
+			}
+			
+			
+			
+			new Vue({
+				el:".box1",
+				components:{          //局部组件引入后，才能使用
+					blackDiv:blackDiv
+				}
+			})
+			
+			new Vue({
+				el:".box2"
+			})
+		</script>
+	</body>
+</html>
